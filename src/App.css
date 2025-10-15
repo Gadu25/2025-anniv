@@ -8,8 +8,6 @@
   --color-bg-dark: #1e1e2f; /* deep bluish gray */
   --color-highlight: #90caf9; /* sky blue */
   --color-neutral: #f7f7f7; /* light gray */
-
-  --font-main: "Poppins", "Inter", sans-serif;
 }
 
 * {
@@ -136,7 +134,7 @@ body{
   
   .countdown .segment {
     min-width: unset;
-    width: 3rem;
+    width: 4rem;
   }
 
   .countdown span {
