@@ -24,8 +24,9 @@ export default function Hero() {
   return (
     <section ref={containerRef} className="hero">
       <h1 ref={titleRef} className="hero__title">
-        {/* One year down, countless memories to go. */}
-        Countdown
+        {/* One year down, countless memories to go.. */}
+        Every heartbeat counts...
+        {/* Countdown */}
       </h1>
       <div ref={countdownRef}>
         <CountdownDisplay targetTime={targetTime} syncUrl="/api/sync-time" />

@@ -74,7 +74,7 @@ body{
    📝 TITLE
    ================================ */
 .hero__title {
-  font-size: clamp(3rem, 5vw, 3rem);
+  font-size: clamp(3rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.3;
   max-width: 700px;
@@ -122,8 +122,12 @@ body{
    📱 RESPONSIVE
    ================================ */
 @media (max-width: 600px) {
+  .hero {
+    padding: 0 18px;
+  }
   .hero__title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .countdown {
