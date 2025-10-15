@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { createCountdown } from "@lex/countdown";
+import { createCountdown } from "../modules/countdown/index";
 import { gsap } from "gsap";
 
 export default function CountdownDisplay({ targetTime, syncUrl }) {
