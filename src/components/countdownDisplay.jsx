@@ -38,8 +38,8 @@ export default function CountdownDisplay({ targetTime, syncUrl }) {
         { scale: 1 },
         {
           scale: 1.1,
-          duration: 0.25,
-          ease: "power2.out",
+          duration: 1,
+          ease: "elastic.out",
           yoyo: true,
           repeat: 1,
         }
@@ -62,18 +62,30 @@ export default function CountdownDisplay({ targetTime, syncUrl }) {
 
   return (
     <div className="countdown">
-      <span ref={(el) => (digitRefs.current.days = el)}>
-        {timeLeft.days}d
-      </span>
-      <span ref={(el) => (digitRefs.current.hours = el)}>
-        {timeLeft.hours}h
-      </span>
-      <span ref={(el) => (digitRefs.current.minutes = el)}>
-        {timeLeft.minutes}m
-      </span>
-      <span ref={(el) => (digitRefs.current.seconds = el)}>
-        {timeLeft.seconds}s
-      </span>
+      <div className="segment">
+        <span ref={(el) => (digitRefs.current.days = el)}>
+          {timeLeft.days}
+        </span>
+        <p>days</p>
+      </div>
+      <div className="segment">
+        <span ref={(el) => (digitRefs.current.hours = el)}>
+          {timeLeft.hours}
+        </span>
+        <p>hours</p>
+      </div>
+      <div className="segment">
+        <span ref={(el) => (digitRefs.current.minutes = el)}>
+          {timeLeft.minutes}
+        </span>
+        <p>minutes</p>
+      </div>
+      <div className="segment">
+        <span ref={(el) => (digitRefs.current.seconds = el)}>
+          {timeLeft.seconds}
+        </span>
+        <p>seconds</p>
+      </div>
     </div>
   );
 }
