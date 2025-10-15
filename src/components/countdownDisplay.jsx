@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { createCountdown } from "@lex/countdown";
+import { gsap } from "gsap";
 
 export default function CountdownDisplay({ targetTime, syncUrl }) {
   const [timeLeft, setTimeLeft] = useState({
@@ -9,8 +10,44 @@ export default function CountdownDisplay({ targetTime, syncUrl }) {
     seconds: 0,
   });
 
+  const prevTime = useRef(timeLeft);
   const countdownRef = useRef(null);
+  const digitRefs = useRef({});
 
+  // Animate only the digit that changed
+  useEffect(() => {
+    const changedUnits = [];
+
+    // detect which unit changed
+    for (const key in timeLeft) {
+      if (timeLeft[key] !== prevTime.current[key]) {
+        changedUnits.push(key);
+      }
+    }
+
+    // store new values
+    prevTime.current = timeLeft;
+
+    // animate each changed digit
+    changedUnits.forEach((unit) => {
+      const el = digitRefs.current[unit];
+      if (!el) return;
+
+      gsap.fromTo(
+        el,
+        { scale: 1 },
+        {
+          scale: 1.1,
+          duration: 0.25,
+          ease: "power2.out",
+          yoyo: true,
+          repeat: 1,
+        }
+      );
+    });
+  }, [timeLeft]);
+
+  // Initialize countdown
   useEffect(() => {
     const countdown = createCountdown({
       targetTime,
@@ -20,16 +57,23 @@ export default function CountdownDisplay({ targetTime, syncUrl }) {
     });
 
     countdownRef.current = countdown;
-
     return () => countdown.stop();
   }, [targetTime, syncUrl]);
 
   return (
     <div className="countdown">
-      <span>{timeLeft.days}d </span>
-      <span>{timeLeft.hours}h </span>
-      <span>{timeLeft.minutes}m </span>
-      <span>{timeLeft.seconds}s</span>
+      <span ref={(el) => (digitRefs.current.days = el)}>
+        {timeLeft.days}d
+      </span>
+      <span ref={(el) => (digitRefs.current.hours = el)}>
+        {timeLeft.hours}h
+      </span>
+      <span ref={(el) => (digitRefs.current.minutes = el)}>
+        {timeLeft.minutes}m
+      </span>
+      <span ref={(el) => (digitRefs.current.seconds = el)}>
+        {timeLeft.seconds}s
+      </span>
     </div>
   );
 }

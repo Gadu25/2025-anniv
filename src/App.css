@@ -1,38 +1,120 @@
-.App {
-  text-align: center;
+/* ================================
+   🌈 THEME VARIABLES
+   ================================ */
+:root {
+  --color-primary: #ffd54f; /* golden yellow */
+  --color-accent: #b39ddb; /* lavender */
+  --color-bg-dark: #1e1e2f; /* deep bluish gray */
+  --color-highlight: #90caf9; /* sky blue */
+  --color-neutral: #f7f7f7; /* light gray */
+
+  --font-main: "Poppins", "Inter", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ================================
+   🦸‍♂️ HERO SECTION
+   ================================ */
+.hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  text-align: center;
+
+  background: radial-gradient(circle at top left, var(--color-bg-dark), #151522);
+  color: var(--color-neutral);
+
+  overflow: hidden;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+/* Decorative glow */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 213, 79, 0.05),
+    transparent 70%
+  );
+  z-index: 0;
+  animation: slowRotate 60s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
+@keyframes slowRotate {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+/* ================================
+   📝 TITLE
+   ================================ */
+.hero__title {
+  font-family: var(--font-main);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.3;
+  max-width: 700px;
+  color: var(--color-primary);
+  z-index: 1;
+
+  /* background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-highlight),
+    var(--color-accent)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+
+  margin-bottom: 1.8rem;
+  text-shadow: 0 0 20px rgba(255, 213, 79, 0.15);
+}
+
+/* ================================
+   ⏳ COUNTDOWN
+   ================================ */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  letter-spacing: 1px;
+  color: var(--color-highlight);
+  text-shadow: 0 0 10px rgba(144, 202, 249, 0.3);
+  z-index: 1;
+  position: relative;
+  will-change: transform;
+}
+
+.countdown__digit {
+  display: inline-block;
+  transform-origin: center;
+}
+
+
+/* ================================
+   📱 RESPONSIVE
+   ================================ */
+@media (max-width: 600px) {
+  .hero__title {
+    font-size: 1.8rem;
+  }
+
+  .countdown {
+    font-size: 1.2rem;
+    gap: 0.5rem;
   }
 }
