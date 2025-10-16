@@ -10,8 +10,6 @@ export function AppPhaseProvider({ children, targetDate }) {
       const now = new Date();
       const target = new Date(targetDate);
 
-      console.log(target, "target");
-
       // For example, "today" means same calendar date
       const isSameDay =
         now.getFullYear() === target.getFullYear() &&
