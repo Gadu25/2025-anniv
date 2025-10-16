@@ -37,11 +37,9 @@ export default function CountdownDisplay({ targetTime, syncUrl }) {
         el,
         { scale: 1 },
         {
-          scale: 1.1,
+          scale: 1.2,
           duration: 1,
           ease: "elastic.out",
-          yoyo: true,
-          repeat: 1,
         }
       );
     });

@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AppPhaseProvider } from './context/AppPhaseContext';
+import { annivDate } from './const/common';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AppPhaseProvider targetDate={annivDate}>
+      <App />
+    </AppPhaseProvider>
   </React.StrictMode>
 );
 
